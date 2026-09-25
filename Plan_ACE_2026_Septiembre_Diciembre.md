@@ -1,10 +1,12 @@
 # Plan integral de preparación ACE | 21 septiembre–31 diciembre 2026
 
-**Objetivo:** reconstruir desde cero las destrezas del examen estándar Associate Cloud Engineer (ACE) tras un intento fallido, con práctica real, revisión de errores y dos simulacros antes de escoger fecha de examen. Aprobar no se puede garantizar; el plan busca una preparación comprobable.
+**Objetivo:** reconstruir desde cero las destrezas del examen estándar Associate Cloud Engineer (ACE) tras un intento fallido, con práctica real, revisión de errores y tres simulacros antes de escoger fecha de examen. Aprobar no se puede garantizar; el plan busca una preparación comprobable.
 
 **Fuente principal:** `associate_cloud_engineer_exam_guide_english.pdf` (guía oficial adjunta de 5 páginas). La guía agrupa los temas en **1. Entorno (~20 %), 2. Planificación e implementación (~30 %), 3. Operación (~30 %), 4. Acceso y seguridad (~20 %)**. La explicación diaria será en español desde cero, conservará los nombres de producto y conceptos en inglés y hará preguntas tipo examen en inglés. Los porcentajes son aproximados, no una fórmula para calcular la nota.
 
-**Calendario:** lunes a viernes, 15:00, `America/Mexico_City`, del 21-09 al 31-12-2026, inclusive: **74 lecciones**. Descanso los sábados y domingos. Los festivos entre semana siguen en el calendario; podrán emplearse como día ligero de repaso si hace falta. **Hacia las 17:00** habrá un segundo recordatorio para la actividad pendiente de Google Skills. Duración sugerida: 60–90 minutos para la lección y la práctica; otros 60–90 minutos para Skills, con flexibilidad para laboratorios largos.
+**Calendario:** lunes a viernes, 15:00, `America/Mexico_City`, del 21-09 al 31-12-2026, inclusive: **74 lecciones**. Descanso los sábados y domingos. Los festivos entre semana siguen en el calendario; si deseas librar alguno, podremos reprogramar ese contenido. **Hacia las 17:00** habrá un segundo recordatorio para la actividad pendiente de Google Skills. Duración sugerida: 60–90 minutos para la lección y la práctica; otros 60–90 minutos para Skills, con flexibilidad para laboratorios largos.
+
+**Proyecto transversal de práctica:** **SiteOps Tracker**, un caso completamente ficticio de portafolio para auditar infraestructura de TI en sedes ficticias, registrar activos, hallazgos, estados, responsables, evidencias e historial. Usa React + TypeScript, Node.js + TypeScript, PostgreSQL y, según la lección, servicios de Google Cloud. No representa ni reutiliza nombres, datos, arquitectura o requisitos de proyectos internos o privados.
 
 ## Cómo se trabaja cada día
 
@@ -35,7 +37,7 @@ La ruta de Skills puede cambiar sus actividades o duración. El recordatorio deb
 | 3 | 23/09/2026 | Base, 1.2 | Costos, facturación y presupuesto sin sorpresas | Ubica la cuenta de facturación y prepara una lista de controles de costo y limpieza. |
 | 4 | 24/09/2026 | Base, 1.1/2.3 | Regiones, zonas, red y disponibilidad | Compara dos arquitecturas de una y varias zonas y explica una decisión de ubicación. |
 | 5 | 25/09/2026 | Base, todas | Método ACE: CLI, escenarios y vocabulario técnico en inglés | Resuelve 15 preguntas diagnósticas y crea registro de errores por dominio. |
-| 6 | 28/09/2026 | 1.1 | Jerarquía: organizaciones, carpetas, proyectos y recursos | Diseña una jerarquía para Bitácora de Red con desarrollo y producción. |
+| 6 | 28/09/2026 | 1.1 | Jerarquía: organizaciones, carpetas, proyectos y recursos | Diseña una jerarquía para SiteOps Tracker con desarrollo y producción. |
 | 7 | 29/09/2026 | 1.1 | Políticas de organización, restricciones y herencia | Decide en qué nivel aplicar tres restricciones y observa la diferencia frente a IAM. |
 | 8 | 30/09/2026 | 1.1/4.1 | IAM inicial, miembros, Cloud Identity, usuarios y grupos | Crea una matriz de usuarios, grupos y permisos mínimos para tres equipos. |
 | 9 | 01/10/2026 | 1.1 | APIs, cuotas y aumentos de cuotas | Habilita una API en un laboratorio y localiza una cuota y su flujo de aumento. |
@@ -97,7 +99,7 @@ La ruta de Skills puede cambiar sus actividades o duración. El recordatorio deb
 | 65 | 18/12/2026 | 4.1/4.2 | Laboratorio de IAM de principio a fin | Crea o simula roles, cuentas, vínculo a recurso e impersonation; revoca accesos. |
 | 66 | 21/12/2026 | 4.1/4.2 | Casos de seguridad: humanos frente a workloads | Resuelve cinco casos y explica por qué los distractores son incorrectos. |
 | 67 | 22/12/2026 | 4.1/4.2 | Evaluación de seguridad en inglés | Resuelve 25 preguntas de acceso/seguridad y revisa fallos por concepto. |
-| 68 | 23/12/2026 | 1-4 | Diseño integral de Bitácora de Red en Google Cloud | Elige red, compute, datos, observabilidad, IAM y costos con justificación. |
+| 68 | 23/12/2026 | 1-4 | Diseño integral de SiteOps Tracker en Google Cloud | Elige red, compute, datos, observabilidad, IAM y costos con justificación. |
 | 69 | 24/12/2026 | 1-4 | Repaso espaciado de servicios parecidos | Compara 20 pares confundibles y rehace 10 preguntas falladas. |
 | 70 | 25/12/2026 | 1-4 | Simulacro A: 55 preguntas originales en 120 minutos | Registra aciertos, tiempo y errores por 20/30/30/20. |
 | 71 | 28/12/2026 | 1-4 | Corrección profunda del simulacro A | Explica cada error, repite un laboratorio débil y elabora fichas de decisión. |

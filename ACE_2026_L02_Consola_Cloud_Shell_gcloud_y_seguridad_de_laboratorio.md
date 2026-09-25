@@ -1,12 +1,15 @@
 # ACE 2026 — Lección 02: Consola, Cloud Shell, `gcloud` y seguridad de laboratorio
 
 **Fecha:** 22 de septiembre de 2026  
+**Fecha de regeneración:** 24 de septiembre de 2026  
 **Ruta del plan:** Base y sección 1.1 — *Setting up cloud projects and accounts*  
 **Práctica del calendario:** Navegar un proyecto de laboratorio y ejecutar consultas de proyecto, cuenta y configuración.  
 **Duración sugerida:** 90–120 minutos  
 **Idioma:** explicación en español; términos de producto y preguntas de examen en inglés.
 
 > Esta lección usa únicamente consultas de lectura. No habilites APIs, no cambies IAM, no crees recursos y no borres proyectos. Trabaja solo en un proyecto que te pertenezca o que el laboratorio te haya asignado.
+
+> **Proyecto de práctica:** SiteOps Tracker es un caso completamente ficticio de portafolio para auditar infraestructura de TI en sedes ficticias. Usa React + TypeScript, Node.js + TypeScript y PostgreSQL; no representa ni reutiliza datos, arquitectura o requisitos de proyectos internos o privados.
 
 ---
 
@@ -135,7 +138,7 @@ Antes de ejecutar una modificación, responde tres preguntas.
 | Pregunta | Concepto | Ejemplo | Comprobación de hoy |
 |---|---|---|---|
 | ¿Quién soy? | Active account | `student-...@example.com` | `gcloud auth list` |
-| ¿Dónde operaré? | Project | `bitacora-red-lab` | `gcloud config list project` |
+| ¿Dónde operaré? | Project | `siteops-tracker-lab` | `gcloud config list project` |
 | ¿Con qué perfil y valores? | Active configuration | `default` o `lab` | `gcloud config configurations list` y `gcloud config list` |
 
 ### 5.1 Cuenta activa
@@ -198,10 +201,10 @@ Despiece:
 Segundo ejemplo:
 
 ```bash
-gcloud projects describe bitacora-red-lab
+gcloud projects describe siteops-tracker-lab
 ```
 
-Aquí `bitacora-red-lab` es un **positional argument**: identifica la entidad sobre la que opera `describe`.
+Aquí `siteops-tracker-lab` es un **positional argument**: identifica la entidad sobre la que opera `describe`.
 
 ### 6.1 `list` frente a `describe`
 
@@ -231,14 +234,14 @@ Regla de laboratorio: **no añadas `--quiet` a un comando que modifica o elimina
 
 ---
 
-## 7. Ejemplo guiado: Bitácora de Red
+## 7. Ejemplo guiado: SiteOps Tracker
 
-La empresa ficticia mantiene una app de auditoría llamada **Bitácora de Red**. Tiene dos proyectos:
+Una empresa ficticia mantiene **SiteOps Tracker**, una aplicación de portafolio para auditar infraestructura de TI en sedes ficticias y conservar hallazgos, estados, evidencias e historial. Tiene dos proyectos de Google Cloud:
 
-- `bitacora-red-dev`: pruebas y desarrollo;
-- `bitacora-red-prod`: producción.
+- `siteops-tracker-dev`: pruebas y desarrollo;
+- `siteops-tracker-prod`: producción.
 
-Ana recibe una cuenta temporal de laboratorio para inspeccionar `bitacora-red-dev`. En la consola ve `bitacora-red-prod`, porque lo consultó ayer. Abre Cloud Shell y está a punto de pegar un comando de creación.
+Ana recibe una cuenta temporal de laboratorio para inspeccionar `siteops-tracker-dev`. En la consola ve `siteops-tracker-prod`, porque lo consultó ayer. Abre Cloud Shell y está a punto de pegar un comando de creación.
 
 El flujo correcto es:
 
@@ -258,8 +261,8 @@ El flujo incorrecto sería asumir que “si Cloud Shell abrió, todo está bien�
 |---|---|
 | Cuenta activa | `student-***@example.com` |
 | Configuración activa | `default` |
-| Proyecto esperado | `bitacora-red-dev` |
-| Proyecto observado | `bitacora-red-dev` |
+| Proyecto esperado | `siteops-tracker-dev` |
+| Proyecto observado | `siteops-tracker-dev` |
 | Comando previsto | Consulta de metadatos |
 | ¿Produce cambios? | No |
 | Decisión | Continuar con la consulta |
@@ -434,29 +437,29 @@ $ gcloud config configurations list
 NAME: default
 IS_ACTIVE: True
 ACCOUNT: student-***@example.com
-PROJECT: bitacora-red-prod
+PROJECT: siteops-tracker-prod
 
 $ gcloud config list project
 [core]
-project = bitacora-red-prod
+project = siteops-tracker-prod
 
-El laboratorio autoriza: bitacora-red-dev
+El laboratorio autoriza: siteops-tracker-dev
 ```
 
 Responde:
 
 1. ¿Cuál es la cuenta activa? `student-***@example.com`.
 2. ¿Cuál es la configuración activa? `default`.
-3. ¿Cuál es el proyecto predeterminado? `bitacora-red-prod`.
+3. ¿Cuál es el proyecto predeterminado? `siteops-tracker-prod`.
 4. ¿Coincide con el proyecto autorizado? No.
 5. ¿Debe ejecutarse una creación? No; hay que detenerse y corregir o aclarar el contexto según las instrucciones.
 6. ¿Cambiar de proyecto concedería permisos? No. Los permisos dependen de IAM para la identidad.
-7. ¿La VM de Cloud Shell pertenece a `bitacora-red-prod`? No; Google administra la VM temporal y no aparece en ese proyecto.
+7. ¿La VM de Cloud Shell pertenece a `siteops-tracker-prod`? No; Google administra la VM temporal y no aparece en ese proyecto.
 
 Ahora interpreta esta consulta:
 
 ```text
-$ gcloud projects describe bitacora-red-dev
+$ gcloud projects describe siteops-tracker-dev
 ERROR: (gcloud.projects.describe) User [...] does not have permission to access projects instance [...] or it may not exist
 ```
 
@@ -734,7 +737,7 @@ D. `gcloud config configurations list --filter=project`
 
 ### Question 3
 
-The Google Cloud console project selector shows `network-audit-prod`, but `gcloud config list project` shows `network-audit-dev`. You are about to create a resource. What should you do first?
+The Google Cloud console project selector shows `site-operations-prod`, but `gcloud config list project` shows `site-operations-dev`. You are about to create a resource. What should you do first?
 
 A. Run the create command with `--quiet` so the configured default is used.  
 B. Stop and verify the authorized account, configuration, and target project.  
@@ -788,7 +791,7 @@ D. Grant the teammate Owner so the token is unnecessary.
 
 ### Question 9
 
-`gcloud projects describe network-audit-lab` returns `PERMISSION_DENIED`. What is the best next step?
+`gcloud projects describe site-operations-lab` returns `PERMISSION_DENIED`. What is the best next step?
 
 A. Verify the active account and project ID, then request only the required access if needed.  
 B. Create another project with the same name.  

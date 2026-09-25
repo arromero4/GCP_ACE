@@ -1,13 +1,15 @@
 # ACE 2026 - Lección 01: Qué es la nube, proyectos y servicios de Google Cloud
 
 **Fecha del plan:** 21 de septiembre de 2026  
-**Fecha de regeneración:** 22 de septiembre de 2026  
+**Fecha de regeneración:** 24 de septiembre de 2026  
 **Guía oficial:** Base y sección 1.1, *Setting up cloud projects and accounts*  
 **Práctica del calendario:** dibujar la relación entre organización, carpeta, proyecto y recurso; completar un diagnóstico original de 10 preguntas  
 **Duración sugerida:** 60-90 minutos  
 **Idioma:** explicación en español; términos de Google Cloud y preguntas de examen en inglés
 
 > Esta es una reconstrucción desde cero. Completar la lectura o recibir una puntuación alta en el diagnóstico no demuestra por sí solo dominio del tema. Conserva evidencias y registra los errores para repasarlos.
+
+> **Proyecto de práctica:** SiteOps Tracker es un caso completamente ficticio de portafolio para auditar infraestructura de TI en sedes ficticias. Usa React + TypeScript, Node.js + TypeScript y PostgreSQL; no representa ni reutiliza datos, arquitectura o requisitos de proyectos internos o privados.
 
 ---
 
@@ -20,7 +22,7 @@ Al terminar esta lección podrás:
 3. Dibujar la jerarquía **Organization > Folder > Project > Service resource**.
 4. Explicar por qué el proyecto funciona como contenedor de servicios, límite de confianza, unidad de costos y punto de aplicación de políticas.
 5. Distinguir **project name**, **project ID** y **project number**.
-6. Identificar, de forma preliminar, servicios apropiados para Bitácora de Red y descartar alternativas sobredimensionadas o incompatibles.
+6. Identificar, de forma preliminar, servicios apropiados para SiteOps Tracker y descartar alternativas sobredimensionadas o incompatibles.
 7. Inspeccionar proyectos y APIs habilitadas mediante la consola y comandos de solo lectura.
 8. Establecer una línea base mediante 10 preguntas originales en inglés.
 
@@ -28,7 +30,7 @@ Al terminar esta lección podrás:
 
 La lección queda trabajada cuando puedas mostrar estas cuatro evidencias:
 
-- [ ] Un diagrama propio de la jerarquía de Bitácora de Red.
+- [ ] Un diagrama propio de la jerarquía de SiteOps Tracker.
 - [ ] Una tabla que relacione al menos tres necesidades con un servicio y un recurso.
 - [ ] La salida o simulación razonada de los comandos de solo lectura.
 - [ ] El diagnóstico contestado y una ficha por cada error o respuesta insegura.
@@ -176,8 +178,8 @@ Facturación: Billing account ──vínculo de pago──> Project
 Ejemplo ficticio:
 
 ```text
-Project name: Bitácora de Red - Desarrollo
-Project ID: bitacora-red-dev-2026
+Project name: SiteOps Tracker - Desarrollo
+Project ID: siteops-tracker-dev-2026
 Project number: 123456789012
 ```
 
@@ -189,19 +191,19 @@ El nombre visible no es necesariamente el valor que acepta un comando. Cuando un
 
 ---
 
-## 7. Caso aplicado: Bitácora de Red
+## 7. Caso aplicado: SiteOps Tracker
 
-Bitácora de Red registra sedes, dispositivos, hallazgos, estados, responsables e historial de auditoría. Una jerarquía inicial razonable podría ser:
+SiteOps Tracker registra sedes ficticias, activos de TI, auditorías, hallazgos, estados, responsables, evidencias e historial. Su frontend usa React + TypeScript, su API usa Node.js + TypeScript y sus datos operativos se modelan en PostgreSQL. Una jerarquía inicial razonable podría ser:
 
 ```text
 Organization: empresa.example
 └── Folder: Technology
-    └── Folder: Network-Audit
-        ├── Project: bitacora-red-dev
+    └── Folder: Site-Operations
+        ├── Project: siteops-tracker-dev
         │   ├── Cloud Run service: audit-api-dev
         │   ├── Cloud SQL instance: audit-postgres-dev
         │   └── Cloud Storage bucket: audit-evidence-dev
-        └── Project: bitacora-red-prod
+        └── Project: siteops-tracker-prod
             ├── Cloud Run service: audit-api-prod
             ├── Cloud SQL instance: audit-postgres-prod
             └── Cloud Storage bucket: audit-evidence-prod
@@ -222,7 +224,7 @@ No significa que dos proyectos jamás puedan comunicarse. Esa comunicación debe
 
 Hoy solo construirás el razonamiento inicial; los servicios se estudiarán con profundidad en lecciones posteriores.
 
-| Necesidad de Bitácora de Red | Elección inicial | Por qué encaja | Por qué no elegir las alternativas todavía |
+| Necesidad de SiteOps Tracker | Elección inicial | Por qué encaja | Por qué no elegir las alternativas todavía |
 |---|---|---|---|
 | API Node.js/TypeScript en contenedor, tráfico variable y equipo pequeño | **Cloud Run service** | Plataforma de aplicaciones totalmente administrada; adecuada para endpoints HTTP y APIs; reduce administración de infraestructura. | **Compute Engine** exige administrar más elementos de la VM y el SO. **GKE** aporta Kubernetes y control de clúster, pero añade conceptos y operación innecesarios para una API sencilla. |
 | Sedes, auditorías, hallazgos y relaciones con transacciones; PostgreSQL ya es parte del proyecto | **Cloud SQL for PostgreSQL** | Base de datos relacional administrada y compatible con PostgreSQL. | **Firestore** es una base documental y exigiría rediseñar el modelo. **Cloud Storage** almacena objetos, no sustituye una base relacional transaccional. **BigQuery** se orienta a análisis, no a la base operacional principal de esta aplicación. |
@@ -270,7 +272,7 @@ Debajo del dibujo, responde:
 1. ¿Qué nivel usarías para separar desarrollo y producción?
 2. ¿En qué nivel se habilita normalmente una API?
 3. ¿Qué elemento se vincula al proyecto para pagar consumo, pero no es su padre jerárquico?
-4. Si una regla debe abarcar todos los proyectos de Network-Audit, ¿qué ancestro sería un punto lógico para evaluarla?
+4. Si una regla debe abarcar todos los proyectos de Site-Operations, ¿qué ancestro sería un punto lógico para evaluarla?
 
 ### Parte B - Exploración de consola, solo lectura
 
@@ -353,11 +355,11 @@ Completa sin pegar información sensible:
 Usa este entorno ficticio:
 
 ```text
-Organization: romero.example
+Organization: northstar.example
 Folder: Engineering
-Subfolder: Network-Audit
-Project name: Bitácora de Red - Dev
-Project ID: bitacora-red-dev-2026
+Subfolder: Site-Operations
+Project name: SiteOps Tracker - Dev
+Project ID: siteops-tracker-dev-2026
 Project number: 123456789012
 Enabled services:
 - run.googleapis.com
@@ -386,7 +388,7 @@ Esta modalidad cubre íntegramente el objetivo del Día 1. La experiencia de con
 
 Al finalizar deberías poder producir una explicación parecida a esta, sin memorizarla literalmente:
 
-> Google Cloud organiza el gobierno mediante una jerarquía. La Organization es la raíz administrada, las Folders agrupan y los Projects contienen servicios habilitados y la mayoría de los recursos. Un proyecto también ayuda a separar confianza, costos y políticas. La Billing account paga el consumo de proyectos, pero no es un padre de Resource Manager. Para Bitácora de Red empezaría con proyectos distintos para desarrollo y producción; usaría Cloud Run para la API, Cloud SQL for PostgreSQL para datos relacionales y Cloud Storage para evidencias. Esa selección todavía debe validarse contra requisitos de disponibilidad, seguridad y costo.
+> Google Cloud organiza el gobierno mediante una jerarquía. La Organization es la raíz administrada, las Folders agrupan y los Projects contienen servicios habilitados y la mayoría de los recursos. Un proyecto también ayuda a separar confianza, costos y políticas. La Billing account paga el consumo de proyectos, pero no es un padre de Resource Manager. Para SiteOps Tracker empezaría con proyectos distintos para desarrollo y producción; usaría Cloud Run para la API, Cloud SQL for PostgreSQL para datos relacionales y Cloud Storage para evidencias. Esa selección todavía debe validarse contra requisitos de disponibilidad, seguridad y costo.
 
 Tu práctica es satisfactoria si el diagrama, la tabla y esa explicación no confunden los siguientes pares:
 
@@ -504,7 +506,7 @@ D. A Cloud Shell session
 
 ### Question 2
 
-The Bitácora de Red team needs development and production to have separate access controls, cost attribution, and failure boundaries. What is the best starting design?
+The SiteOps Tracker team needs development and production to have separate access controls, cost attribution, and failure boundaries. What is the best starting design?
 
 A. Put both environments in one project and distinguish them only by VM names  
 B. Use separate projects for development and production under an appropriate folder  
@@ -549,7 +551,7 @@ D. Cloud Storage because it executes HTTP application code
 
 ### Question 7
 
-Bitácora de Red stores sites, audits, findings, and status history with relationships and transactions. The application already uses PostgreSQL. Which managed service is the best initial fit for the operational database?
+SiteOps Tracker stores sites, audits, findings, and status history with relationships and transactions. The application already uses PostgreSQL. Which managed service is the best initial fit for the operational database?
 
 A. Cloud Storage  
 B. Cloud SQL for PostgreSQL  
@@ -704,7 +706,7 @@ Cierra el archivo durante cinco minutos y responde de memoria:
 2. ¿Por qué una Billing account no debe dibujarse como padre de un Project?
 3. ¿Cuál es la diferencia entre API habilitada y recurso creado?
 4. ¿Qué identificador es editable y cuáles no?
-5. ¿Por qué Cloud Run + Cloud SQL + Cloud Storage es una hipótesis razonable para Bitácora de Red?
+5. ¿Por qué Cloud Run + Cloud SQL + Cloud Storage es una hipótesis razonable para SiteOps Tracker?
 
 **Próximas recuperaciones de esta lección:**
 
@@ -730,7 +732,7 @@ Tipo de error:
 Qué palabra del escenario ignoré:
 Regla corregida en una frase:
 Por qué fallan los distractores:
-Ejemplo aplicado a Bitácora de Red:
+Ejemplo aplicado a SiteOps Tracker:
 Acción de refuerzo:
 Revisar: siguiente día hábil / 7 días / 21 días
 ```
@@ -765,7 +767,7 @@ Usa la escala 0-2 en cada criterio.
 | Explico los cuatro papeles principales del Project | | | |
 | Distingo project name, ID y number | | | |
 | Separo Billing account de la jerarquía | | | |
-| Justifico tres servicios para Bitácora de Red | | | |
+| Justifico tres servicios para SiteOps Tracker | | | |
 | Explico por qué no elegir las alternativas | | | |
 | Ejecuto o simulo correctamente las consultas de solo lectura | | | |
 
